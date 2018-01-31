@@ -29,6 +29,7 @@
             var site_url = "${SITE_URL}";	  // app的url前缀,在ajax调用的时候，应该加上该前缀
             var static_url = "${STATIC_URL}"; // 静态资源前缀
         </script>
+
     </%block>
   </head>
 
@@ -96,6 +97,7 @@
     <!-- jquery js  -->
     <script src="${STATIC_URL}js/jquery-1.10.2.min.js" type="text/javascript"></script>
     <script src="${STATIC_URL}js/jquery.json-2.3.min.js" type="text/javascript"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
     <!-- bootstrap js  -->
     <script src="${STATIC_URL}assets/bootstrap-3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
     <!--配置js  勿删-->
@@ -109,6 +111,7 @@
     <script type="text/javascript" src="${STATIC_URL}js/base.js"></script>
     <script type="text/javascript" src="${STATIC_URL}js/ztree_option.js"></script>
     <script type="text/javascript" src="${STATIC_URL}js/kendo_grid_option.js"></script>
+
     ${self.body()}
     <!-- 兼容性设置 -->
     <!--[if lt IE 6]>\xe8\x93\x9d\xe9\xb2\xb8\xe6\x99\xba\xe8\x90\xa5\x20\xe7\x89\x88\xe6\x9d\x83\xe6\x89\x80\xe6\x9c\x89<![endif]-->

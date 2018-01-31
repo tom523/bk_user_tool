@@ -19,6 +19,9 @@ urlpatterns = patterns(
 
     # 任务执行
     (r'^fast_execute_script/$', 'fast_execute_script'),
+    (r'^useradd/$', 'useradd'),
+    (r'^userdel/$', 'userdel'),
+    (r'^change_password/$', 'change_password'),
     # (r'^get_log_list/$', 'get_log_list'),
     # (r'^search_business/$', 'search_business'),
     # (r'^get_server_list/$', 'get_server_list'),

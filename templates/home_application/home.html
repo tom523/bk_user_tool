@@ -19,7 +19,8 @@
             <div class="ui-ui" style="position: relative; z-index: 0;">
                 <div class="form-group clearfix p30">
                     <div class="col-sm-7 col-sm-offset-3">
-                        <button  onclick="confirm()" type="button" class="king-btn king-success mr10 navbar-blue">提交</button>
+                        <button  onclick="confirm()" type="button" class="king-btn king-success mr10 navbar-blue">查询用户</button>
+                        <button  onclick="useradd()" type="button" class="king-btn king-success mr10 navbar-blue">新建用户</button>
                         <button onclick="cancel()" class="king-btn king-default">取消</button>
                     </div>
                 </div>
@@ -37,6 +38,7 @@
                             <th style="width: 20%;">username</th>
                             <th style="width: 20%;">home</th>
                             <th>shell</th>
+                            <th>operations</th>
                         </tr>
                     </thead>
                     <tbody id="user_data">
@@ -66,7 +68,59 @@
         </div>
     </div>
 </div>
+<form id="form1" runat="server">
+    <div id="alertDiv" hidden="hidden">
+       <div class="king-page-box">
+            <div class="king-container clearfix">
+                <form class="form-horizontal">
+                    <div class="form-group clearfix ">
+                        <label class="col-sm-3 control-label bk-lh30 pt0">用户名：</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control bk-valign-top" id="linux_username" placeholder="用户名"> </div>
+                    </div>
+                    <div class="form-group clearfix ">
+                        <label class="col-sm-3 control-label bk-lh30 pt0">密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control bk-valign-top" id="linux_pwd" placeholder="密码">
+                            <p class="help-block">6位以上，仅可由数字、字母、下划线组成</p>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix ">
+                        <label class="col-sm-3 control-label bk-lh30 pt0">重复：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control bk-valign-top" id="linux_pwd_repeat" placeholder="密码">
+                            <p class="help-block">保持一致</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="changePwdDiv" hidden="hidden">
+       <div class="king-page-box">
+            <div class="king-container clearfix">
+                <form class="form-horizontal">
+                    <div class="form-group clearfix ">
+                        <label class="col-sm-3 control-label bk-lh30 pt0">密码：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control bk-valign-top" id="linux_new_pwd" placeholder="密码">
+                            <p class="help-block">6位以上，仅可由数字、字母、下划线组成</p>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix ">
+                        <label class="col-sm-3 control-label bk-lh30 pt0">重复：</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control bk-valign-top" id="linux_new_pwd_repeat" placeholder="密码">
+                            <p class="help-block">保持一致</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</form>
 </%block>
 <script type="text/javascript" src="${STATIC_URL}js/sys/change_pass.js"></script>
+
 
 

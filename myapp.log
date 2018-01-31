@@ -1,2 +1,0 @@
-Sun, 28 Jan 2018 23:29:12 utils.py[line:89] DEBUG (0.001) QUERY = "\n            SELECT name, type FROM sqlite_master\n            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'\n            ORDER BY name" - PARAMS = (); args=None
-Sun, 28 Jan 2018 23:29:12 utils.py[line:89] DEBUG (0.000) QUERY = u'SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"' - PARAMS = (); args=()

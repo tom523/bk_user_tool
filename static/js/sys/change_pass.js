@@ -73,6 +73,54 @@ var tree_option = {
 
 var app_id_list = "";
 
+function useradd() {
+    if(servers_selected.length ==0){
+    app_alert("请选择服务器！");
+    return;
+    }
+    var d = dialog({
+        width: 500,
+        title: '新建用户',
+        content: $("#alertDiv")[0],
+        okValue: '提交',
+        ok: function () {
+            data_info = {
+                linux_username: $('#linux_username').val(),
+                linux_pwd: $('#linux_pwd').val(),
+                servers: servers_selected,
+            }
+            var data = JSON.stringify(data_info);
+            show_loading();
+            $.post(site_url + "useradd/", {"data": data}, function (res) {
+                close_loading();
+                if (res.is_success == "one") {
+                    app_none_modal_alert(res.message);
+
+                }
+                else if (res.is_success == "two") {
+                    app_alert(res.message);
+                }
+                else {
+                    app_alert(res.message);
+                }
+            }).error(function(error) {
+                if (error.status == 403) {
+                    app_alert("没有权限")
+                }
+                else {
+                    alert(error)
+                }
+
+            })},
+        cancelValue: '取消',
+        cancel: function () {
+
+        }
+
+    })
+    d.showModal()
+}
+
 function confirm() {
     var ipList = "";
     // var os_type=$('input:radio[name="os_select"]:checked').val();
@@ -103,6 +151,7 @@ function confirm() {
         servers: servers_selected,
         // os_type:os_type
     };
+
     var data = JSON.stringify(data_info);
     show_loading();
     $.post(site_url + "fast_execute_script/", {"data": data}, function (res) {
@@ -116,6 +165,14 @@ function confirm() {
                         "<td>" + val.user_name + "</td>" +
                         "<td>" + val.user_home + "</td>" +
                         "<td>" + val.user_shell + "</td>" +
+                        "<td><button type='button' onclick=\"change_password('" + val.ip + "," + val.user_name + "," + val.source + "," + val.app_id +
+                        "')\" class=\"btn btn-xs btn-inverse\" title=\"修改密码\">\n" +
+                        "                        <i class=\"glyphicon glyphicon-edit\"></i>\n" +
+                        "                    </button>\n" +
+                        "                    <button type='button' onclick=\"userdel('" + val.ip + "," + val.user_name + "," + val.source + "," + val.app_id +
+                        "')\" class=\"btn btn-xs btn-inverse\" title=\"删除用户\">\n" +
+                        "                        <i class=\"glyphicon glyphicon-remove\"></i>\n" +
+                        "                    </button></td>" +
                         "</tr>");
 
                 })
@@ -144,9 +201,101 @@ function confirm() {
     })
 
 }
+
+function test() {
+    alert("test");
+
+}
+
+
+function userdel(args) {
+    data_info = {
+        ip: args.split(",")[0],
+        username: args.split(",")[1],
+        source: args.split(",")[2],
+        app_id: args.split(",")[3],
+    };
+    //     data_info = {
+    //     linux_username: $('#linux_username').val(),
+    //     linux_pwd: $('#linux_pwd').val(),
+    //     servers: servers_selected,
+    // }
+    var data = JSON.stringify(data_info);
+    show_loading();
+    $.post(site_url + "userdel/", {"data": data}, function (res) {
+                close_loading();
+                if (res.is_success == "one") {
+                    app_alert(res.message);
+
+                }
+                else if (res.is_success == "two") {
+                    app_alert(res.message);
+                }
+                else {
+                    app_alert(res.message);
+                }
+            }).error(function(error) {
+                if (error.status == 403) {
+                    app_alert("没有权限")
+                }
+                else {
+                    alert(error.status)
+                }
+            })
+}
+
+
+function change_password(args) {
+    var d = dialog({
+        width: 500,
+        title: '修改密码',
+        content: $("#changePwdDiv")[0],
+        okValue: '提交',
+        ok: function () {
+            data_info = {
+                password: $('#linux_new_pwd').val(),
+                ip: args.split(",")[0],
+                username: args.split(",")[1],
+                source: args.split(",")[2],
+                app_id: args.split(",")[3],
+            }
+            var data = JSON.stringify(data_info);
+            show_loading();
+            $.post(site_url + "change_password/", {"data": data}, function (res) {
+                close_loading();
+                if (res.is_success == "one") {
+                    app_none_modal_alert(res.message);
+
+                }
+                else if (res.is_success == "two") {
+                    app_alert(res.message);
+                }
+                else {
+                    app_alert(res.message);
+                }
+            }).error(function(error) {
+                if (error.status == 403) {
+                    app_alert("没有权限")
+                }
+                else {
+                    alert(error)
+                }
+
+            })},
+        cancelValue: '取消',
+        cancel: function () {
+
+        }
+
+    })
+    d.showModal()
+}
+
+
 function cancel() {
     window.location.reload()
 }
+
 
 
 function select_server() {
