@@ -265,7 +265,7 @@ def userdel(request):
         ip = data["ip"]
         source = data["source"]
         app_id = data["app_id"]
-        password = data["password"]
+        # password = data["password"]
         ip_list = [{"ip": ip, "source": source}, ]
         # servers = data["servers"]
         account = "root"
